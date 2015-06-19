@@ -1,0 +1,33 @@
+<html>
+<head>
+    <title>Fuzzy Logic</title>
+    <script type="text/javascript" src="FuzzyLogic.js"></script>
+    <script type="text/javascript" src="test.js"></script>
+    <style>
+        .invalid
+        {
+            background:#F24E4E;
+            color:White;
+        }
+    </style>
+    <script>
+        var lastSearch = null;
+        function changed() {
+            if (lastSearch != document.querySelector('#input').value.trim()) {
+                var suggestions = f.checkFuzzyLogic(document.querySelector('#input').value.trim());
+                console.log(suggestions);
+                if (suggestions.length == 0) {
+                    document.querySelector('#input').classList.add('invalid');
+                }
+                else {
+                    document.querySelector('#input').classList.remove('invalid');
+                }
+                lastSearch = document.querySelector('#input').value.trim();
+            }
+        }
+    </script>
+</head>
+<body>
+    <input id="input" type="text" onkeyup="changed()" style="width: 100%" />
+</body>
+</html>
